@@ -1,0 +1,79 @@
+ekf_filter_node:
+  ros__parameters:
+
+    use_sim_time: true
+
+    # Output at 30 Hz simulation time
+    frequency: 30.0
+
+    # Full 6-DoF drone
+    two_d_mode: false
+
+    # Frames
+    map_frame: map
+    odom_frame: odom
+    base_link_frame: base_link
+    world_frame: odom
+
+    # T8 already publishes odom -> base_link.
+    # Do not create a second competing TF.
+    publish_tf: false
+
+    print_diagnostics: true
+    debug: false
+
+    # ------------------------------------------------------
+    # VISUAL ODOMETRY
+    #
+    # Fuse absolute:
+    # X Y Z
+    # roll pitch yaw
+    #
+    # Do NOT fuse its linear velocity yet because that
+    # velocity comes from the same RGB-D estimator and is
+    # correlated with its pose.
+    # ------------------------------------------------------
+
+    odom0: /odom
+
+    odom0_config: [
+      true,  true,  true,
+      true,  true,  true,
+      false, false, false,
+      false, false, false,
+      false, false, false
+    ]
+
+    odom0_differential: false
+    odom0_relative: false
+    odom0_queue_size: 10
+
+    # ------------------------------------------------------
+    # IMU
+    #
+    # Do not fuse the Gazebo IMU orientation directly yet.
+    #
+    # Fuse:
+    # angular velocity XYZ
+    # linear acceleration XYZ
+    #
+    # These high-rate measurements propagate the state
+    # between the slower RGB-D pose measurements.
+    # ------------------------------------------------------
+
+    imu0: /slam_quad/imu
+
+    imu0_config: [
+      false, false, false,
+      false, false, false,
+      false, false, false,
+      true,  true,  true,
+      true,  true,  true
+    ]
+
+    imu0_differential: false
+    imu0_relative: false
+    imu0_queue_size: 50
+
+    # Gazebo IMU includes gravity (~+9.81 m/s² while level)
+    imu0_remove_gravitational_acceleration: true

@@ -1,0 +1,34 @@
+# ROS 2 build artifacts
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating system
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+*.ulg
+
+# Gazebo cache
+.gz/
+.gazebo/
+
+# Temporary / backup files
+*.bak
+*.backup
+*.before_*

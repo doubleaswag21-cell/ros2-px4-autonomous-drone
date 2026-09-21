@@ -1,0 +1,4674 @@
+<sdf version="1.10">
+  <world name="slam_room_office">
+    <physics type="ode">
+      <max_step_size>0.0040000000000000001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>250</real_time_update_rate>
+    </physics>
+    <gravity>0 0 -9.8000000000000007</gravity>
+    <magnetic_field>6.0000000000000002e-06 2.3e-05 -4.1999999999999998e-05</magnetic_field>
+    <atmosphere type="adiabatic" />
+    <scene>
+      <grid>false</grid>
+      <ambient>0.400000006 0.400000006 0.400000006 1</ambient>
+      <background>0.699999988 0.699999988 0.699999988 1</background>
+      <shadows>true</shadows>
+    </scene>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <world_frame_orientation>ENU</world_frame_orientation>
+      <latitude_deg>47.397971057728974</latitude_deg>
+      <longitude_deg>8.5461637398001464</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>1 1</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode />
+            </friction>
+            <bounce />
+            <contact />
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>500 500</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.800000012 0.800000012 1</ambient>
+            <diffuse>0.800000012 0.800000012 0.800000012 1</diffuse>
+            <specular>0.800000012 0.800000012 0.800000012 1</specular>
+          </material>
+        </visual>
+        <pose>0 0 0 0 0 0</pose>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <model name="slam_room_structure">
+      <static>true</static>
+      <link name="wall_x_pos">
+        <pose>5 0 2 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.10000000000000001 10 4</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode />
+            </friction>
+            <bounce />
+            <contact />
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.10000000000000001 10 4</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.180000007 0.219999999 0.319999993 1</ambient>
+            <diffuse>0.180000007 0.219999999 0.319999993 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="wall_x_neg">
+        <pose>-5 0 2 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.10000000000000001 10 4</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode />
+            </friction>
+            <bounce />
+            <contact />
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.10000000000000001 10 4</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.300000012 0.180000007 0.219999999 1</ambient>
+            <diffuse>0.300000012 0.180000007 0.219999999 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="wall_y_pos">
+        <pose>0 5 2 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>10 0.10000000000000001 4</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode />
+            </friction>
+            <bounce />
+            <contact />
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>10 0.10000000000000001 4</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.170000002 0.300000012 0.200000003 1</ambient>
+            <diffuse>0.170000002 0.300000012 0.200000003 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="wall_y_neg">
+        <pose>0 -5 2 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>10 0.10000000000000001 4</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode />
+            </friction>
+            <bounce />
+            <contact />
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>10 0.10000000000000001 4</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.319999993 0.270000011 0.159999996 1</ambient>
+            <diffuse>0.319999993 0.270000011 0.159999996 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_0">
+        <pose>4.9400000000000004 -2.3500000000000001 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_1">
+        <pose>4.9400000000000004 -1.1000000000000001 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_2">
+        <pose>4.9400000000000004 0.20000000000000001 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_3">
+        <pose>4.9400000000000004 1.55 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_4">
+        <pose>4.9400000000000004 2.8500000000000001 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_5">
+        <pose>4.9400000000000004 3.75 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_6">
+        <pose>4.9400000000000004 -3.6000000000000001 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_7">
+        <pose>4.9400000000000004 -2.3500000000000001 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_8">
+        <pose>4.9400000000000004 -1.1000000000000001 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_9">
+        <pose>4.9400000000000004 1.55 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_10">
+        <pose>4.9400000000000004 2.8500000000000001 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_11">
+        <pose>4.9400000000000004 3.75 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_12">
+        <pose>4.9400000000000004 -3.6000000000000001 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_13">
+        <pose>4.9400000000000004 -2.3500000000000001 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_14">
+        <pose>4.9400000000000004 -1.1000000000000001 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_15">
+        <pose>4.9400000000000004 0.20000000000000001 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_16">
+        <pose>4.9400000000000004 1.55 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_17">
+        <pose>4.9400000000000004 2.8500000000000001 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_18">
+        <pose>4.9400000000000004 -3.6000000000000001 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_19">
+        <pose>4.9400000000000004 -2.3500000000000001 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_20">
+        <pose>4.9400000000000004 0.20000000000000001 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_21">
+        <pose>4.9400000000000004 1.55 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_22">
+        <pose>4.9400000000000004 2.8500000000000001 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_23">
+        <pose>4.9400000000000004 3.75 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_24">
+        <pose>4.9400000000000004 -3.6000000000000001 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_25">
+        <pose>4.9400000000000004 -2.3500000000000001 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_26">
+        <pose>4.9400000000000004 -1.1000000000000001 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_27">
+        <pose>4.9400000000000004 0.20000000000000001 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_28">
+        <pose>4.9400000000000004 1.55 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_29">
+        <pose>4.9400000000000004 3.75 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_30">
+        <pose>4.9400000000000004 -3.6000000000000001 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_31">
+        <pose>4.9400000000000004 -1.1000000000000001 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_32">
+        <pose>4.9400000000000004 0.20000000000000001 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_33">
+        <pose>4.9400000000000004 1.55 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_34">
+        <pose>4.9400000000000004 2.8500000000000001 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_35">
+        <pose>4.9400000000000004 3.75 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_36">
+        <pose>-4.9400000000000004 -3.6000000000000001 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_37">
+        <pose>-4.9400000000000004 -2.3500000000000001 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_38">
+        <pose>-4.9400000000000004 -1.1000000000000001 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_39">
+        <pose>-4.9400000000000004 1.55 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_40">
+        <pose>-4.9400000000000004 2.8500000000000001 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_41">
+        <pose>-4.9400000000000004 3.75 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_42">
+        <pose>-4.9400000000000004 -3.6000000000000001 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_43">
+        <pose>-4.9400000000000004 -2.3500000000000001 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_44">
+        <pose>-4.9400000000000004 -1.1000000000000001 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_45">
+        <pose>-4.9400000000000004 0.20000000000000001 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_46">
+        <pose>-4.9400000000000004 1.55 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_47">
+        <pose>-4.9400000000000004 2.8500000000000001 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_48">
+        <pose>-4.9400000000000004 -3.6000000000000001 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_49">
+        <pose>-4.9400000000000004 -2.3500000000000001 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_50">
+        <pose>-4.9400000000000004 0.20000000000000001 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_51">
+        <pose>-4.9400000000000004 1.55 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_52">
+        <pose>-4.9400000000000004 2.8500000000000001 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_53">
+        <pose>-4.9400000000000004 3.75 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_54">
+        <pose>-4.9400000000000004 -3.6000000000000001 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_55">
+        <pose>-4.9400000000000004 -2.3500000000000001 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_56">
+        <pose>-4.9400000000000004 -1.1000000000000001 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_57">
+        <pose>-4.9400000000000004 0.20000000000000001 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_58">
+        <pose>-4.9400000000000004 1.55 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_59">
+        <pose>-4.9400000000000004 3.75 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_60">
+        <pose>-4.9400000000000004 -3.6000000000000001 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_61">
+        <pose>-4.9400000000000004 -1.1000000000000001 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_62">
+        <pose>-4.9400000000000004 0.20000000000000001 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_63">
+        <pose>-4.9400000000000004 1.55 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_64">
+        <pose>-4.9400000000000004 2.8500000000000001 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_65">
+        <pose>-4.9400000000000004 3.75 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_66">
+        <pose>-4.9400000000000004 -3.6000000000000001 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_67">
+        <pose>-4.9400000000000004 -2.3500000000000001 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.40000000000000002 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_68">
+        <pose>-4.9400000000000004 -1.1000000000000001 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_69">
+        <pose>-4.9400000000000004 0.20000000000000001 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_70">
+        <pose>-4.9400000000000004 2.8500000000000001 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.48999999999999999 0.32000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="xwall_panel_71">
+        <pose>-4.9400000000000004 3.75 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.025000000000000001 0.57999999999999996 0.40000000000000002</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_72">
+        <pose>-2.3500000000000001 4.9400000000000004 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_73">
+        <pose>-1.1000000000000001 4.9400000000000004 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_74">
+        <pose>0.20000000000000001 4.9400000000000004 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_75">
+        <pose>1.55 4.9400000000000004 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_76">
+        <pose>2.8500000000000001 4.9400000000000004 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_77">
+        <pose>-3.6000000000000001 4.9400000000000004 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_78">
+        <pose>-2.3500000000000001 4.9400000000000004 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_79">
+        <pose>-1.1000000000000001 4.9400000000000004 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_80">
+        <pose>0.20000000000000001 4.9400000000000004 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_81">
+        <pose>2.8500000000000001 4.9400000000000004 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_82">
+        <pose>3.75 4.9400000000000004 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_83">
+        <pose>-3.6000000000000001 4.9400000000000004 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_84">
+        <pose>-2.3500000000000001 4.9400000000000004 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_85">
+        <pose>0.20000000000000001 4.9400000000000004 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_86">
+        <pose>1.55 4.9400000000000004 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_87">
+        <pose>2.8500000000000001 4.9400000000000004 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_88">
+        <pose>3.75 4.9400000000000004 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_89">
+        <pose>-2.3500000000000001 4.9400000000000004 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_90">
+        <pose>-1.1000000000000001 4.9400000000000004 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_91">
+        <pose>0.20000000000000001 4.9400000000000004 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_92">
+        <pose>1.55 4.9400000000000004 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_93">
+        <pose>2.8500000000000001 4.9400000000000004 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_94">
+        <pose>-3.6000000000000001 4.9400000000000004 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_95">
+        <pose>-2.3500000000000001 4.9400000000000004 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_96">
+        <pose>-1.1000000000000001 4.9400000000000004 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_97">
+        <pose>0.20000000000000001 4.9400000000000004 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_98">
+        <pose>2.8500000000000001 4.9400000000000004 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_99">
+        <pose>3.75 4.9400000000000004 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_100">
+        <pose>-3.6000000000000001 4.9400000000000004 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_101">
+        <pose>-2.3500000000000001 4.9400000000000004 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_102">
+        <pose>0.20000000000000001 4.9400000000000004 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_103">
+        <pose>1.55 4.9400000000000004 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_104">
+        <pose>2.8500000000000001 4.9400000000000004 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_105">
+        <pose>3.75 4.9400000000000004 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_106">
+        <pose>-3.6000000000000001 -4.9400000000000004 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_107">
+        <pose>-2.3500000000000001 -4.9400000000000004 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_108">
+        <pose>-1.1000000000000001 -4.9400000000000004 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_109">
+        <pose>0.20000000000000001 -4.9400000000000004 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_110">
+        <pose>1.55 -4.9400000000000004 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_111">
+        <pose>3.75 -4.9400000000000004 0.40000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_112">
+        <pose>-3.6000000000000001 -4.9400000000000004 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_113">
+        <pose>-2.3500000000000001 -4.9400000000000004 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_114">
+        <pose>-1.1000000000000001 -4.9400000000000004 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_115">
+        <pose>1.55 -4.9400000000000004 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_116">
+        <pose>2.8500000000000001 -4.9400000000000004 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_117">
+        <pose>3.75 -4.9400000000000004 1 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_118">
+        <pose>-3.6000000000000001 -4.9400000000000004 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_119">
+        <pose>-1.1000000000000001 -4.9400000000000004 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_120">
+        <pose>0.20000000000000001 -4.9400000000000004 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_121">
+        <pose>1.55 -4.9400000000000004 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_122">
+        <pose>2.8500000000000001 -4.9400000000000004 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_123">
+        <pose>3.75 -4.9400000000000004 1.6000000000000001 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_124">
+        <pose>-3.6000000000000001 -4.9400000000000004 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_125">
+        <pose>-2.3500000000000001 -4.9400000000000004 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_126">
+        <pose>-1.1000000000000001 -4.9400000000000004 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_127">
+        <pose>0.20000000000000001 -4.9400000000000004 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_128">
+        <pose>1.55 -4.9400000000000004 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_129">
+        <pose>3.75 -4.9400000000000004 2.2000000000000002 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_130">
+        <pose>-3.6000000000000001 -4.9400000000000004 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_131">
+        <pose>-2.3500000000000001 -4.9400000000000004 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_132">
+        <pose>-1.1000000000000001 -4.9400000000000004 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_133">
+        <pose>1.55 -4.9400000000000004 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_134">
+        <pose>2.8500000000000001 -4.9400000000000004 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_135">
+        <pose>3.75 -4.9400000000000004 2.7999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_136">
+        <pose>-3.6000000000000001 -4.9400000000000004 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_137">
+        <pose>-1.1000000000000001 -4.9400000000000004 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_138">
+        <pose>0.20000000000000001 -4.9400000000000004 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_139">
+        <pose>1.55 -4.9400000000000004 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.47999999999999998 0.025000000000000001 0.29999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_140">
+        <pose>2.8500000000000001 -4.9400000000000004 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.025000000000000001 0.39000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="ywall_panel_141">
+        <pose>3.75 -4.9400000000000004 3.3999999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.57999999999999996 0.025000000000000001 0.47999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="stripe_xp_1">
+        <pose>4.9199999999999999 0.59999999999999998 1.3 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.029999999999999999 7.2999999999999998 0.14000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="stripe_xp_2">
+        <pose>4.9199999999999999 -0.80000000000000004 2.6499999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.029999999999999999 6 0.16</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="stripe_xn_1">
+        <pose>-4.9199999999999999 -0.29999999999999999 0.80000000000000004 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.029999999999999999 7 0.16</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="stripe_xn_2">
+        <pose>-4.9199999999999999 0.90000000000000002 2.2999999999999998 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.029999999999999999 5.7999999999999998 0.14999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="stripe_yp_1">
+        <pose>0.5 4.9199999999999999 1.1499999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>6.9000000000000004 0.029999999999999999 0.14999999999999999</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="stripe_yp_2">
+        <pose>-0.80000000000000004 4.9199999999999999 2.75 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>5.5999999999999996 0.029999999999999999 0.17000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.449999988 0.180000007 0.899999976 1</ambient>
+            <diffuse>0.449999988 0.180000007 0.899999976 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="stripe_yn_1">
+        <pose>-0.40000000000000002 -4.9199999999999999 0.69999999999999996 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>7.2000000000000002 0.029999999999999999 0.14000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="stripe_yn_2">
+        <pose>0.90000000000000002 -4.9199999999999999 2.1499999999999999 0 0 0</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>5.9000000000000004 0.029999999999999999 0.16</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="floor_1">
+        <pose>1.3999999999999999 -2.1000000000000001 0.012 0 0 0.35000000000000026</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.6000000000000001 0.20000000000000001 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="floor_2">
+        <pose>2.6000000000000001 0.80000000000000004 0.012 0 0 -0.45000000000000018</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.2 0.25 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="floor_3">
+        <pose>-1.5 2 0.012 0 0 0.69999999999999973</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.7 0.17999999999999999 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.800000012 0.25 1</ambient>
+            <diffuse>0.100000001 0.800000012 0.25 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="floor_4">
+        <pose>-2.3999999999999999 -1 0.012 0 0 -0.20000000000000009</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.1000000000000001 0.28000000000000003 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.699999988 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.699999988 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="floor_5">
+        <pose>0.40000000000000002 3 0.012 0 0 0.99999999999999978</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.3999999999999999 0.20000000000000001 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.800000012 0.150000006 0.75 1</ambient>
+            <diffuse>0.800000012 0.150000006 0.75 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="floor_6">
+        <pose>-0.80000000000000004 -3.2000000000000002 0.012 0 0 0.45000000000000018</pose>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.3 0.22 0.02</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="pillar_a">
+        <pose>2.6000000000000001 2.2999999999999998 1.5 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.38 0.38 3</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode />
+            </friction>
+            <bounce />
+            <contact />
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.38 0.38 3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.400000006 0.0799999982 1</ambient>
+            <diffuse>0.949999988 0.400000006 0.0799999982 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="pillar_b">
+        <pose>3 -2.3999999999999999 1.25 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.45000000000000001 0.45000000000000001 2.5</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode />
+            </friction>
+            <bounce />
+            <contact />
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.45000000000000001 0.45000000000000001 2.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.0500000007 0.800000012 0.850000024 1</ambient>
+            <diffuse>0.0500000007 0.800000012 0.850000024 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="pillar_c">
+        <pose>-2.5 1.8 1.3999999999999999 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.40000000000000002 0.40000000000000002 2.7999999999999998</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode />
+            </friction>
+            <bounce />
+            <contact />
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.40000000000000002 0.40000000000000002 2.7999999999999998</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.949999988 0.119999997 0.119999997 1</ambient>
+            <diffuse>0.949999988 0.119999997 0.119999997 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <link name="box_a">
+        <pose>-2.1000000000000001 -2 0.55000000000000004 0 0 0</pose>
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.90000000000000002 0.69999999999999996 1.1000000000000001</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode />
+            </friction>
+            <bounce />
+            <contact />
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.90000000000000002 0.69999999999999996 1.1000000000000001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.100000001 0.349999994 0.949999988 1</ambient>
+            <diffuse>0.100000001 0.349999994 0.949999988 1</diffuse>
+          </material>
+        </visual>
+        <inertial>
+          <pose>0 0 0 0 0 0</pose>
+          <mass>1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <enable_wind>false</enable_wind>
+      </link>
+      <pose>0 0 0 0 0 0</pose>
+      <self_collide>false</self_collide>
+    </model>
+    <include>
+      <uri>file:///home/ammaar/.gz/fuel/fuel.gazebosim.org/openrobotics/models/office chair/1</uri>
+      <name>OfficeChair</name>
+      <pose>-0.6906481552688275 -2.8754553494772441 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/ammaar/.gz/fuel/fuel.gazebosim.org/openrobotics/models/office chair/1</uri>
+      <name>OfficeChair_0</name>
+      <pose>1.0615568366875445 3.2059743575256925 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/ammaar/.gz/fuel/fuel.gazebosim.org/openrobotics/models/office chair/1</uri>
+      <name>OfficeChair_1</name>
+      <pose>-1.5009310338873711 2.0747294852862224 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/ammaar/.gz/fuel/fuel.gazebosim.org/openrobotics/models/office chair/1</uri>
+      <name>OfficeChair_2</name>
+      <pose>3.0802551094453028 1.0446822840655372 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/ammaar/.gz/fuel/fuel.gazebosim.org/openrobotics/models/sofa/3</uri>
+      <name>Sofa</name>
+      <pose>-0.63298975091306409 3.7048351648303575 0.00011980857610649055 7.9633585851393698e-08 3.6755280988454088e-08 -3.3455027435200095e-09</pose>
+    </include>
+    <include>
+      <uri>file:///home/ammaar/.gz/fuel/fuel.gazebosim.org/openrobotics/models/office chair/1</uri>
+      <name>OfficeChair_3</name>
+      <pose>2.2984476223732972 -4.129264267279213 0 0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/ammaar/.gz/fuel/fuel.gazebosim.org/openrobotics/models/office chair/1</uri>
+      <name>OfficeChair_4</name>
+      <pose>-4.1333598962310676 -2.5229779973934252 0 0 0 0</pose>
+    </include>
+    <light name="sunUTC" type="directional">
+      <pose>0 0 500 0 0 0</pose>
+      <cast_shadows>true</cast_shadows>
+      <intensity>1</intensity>
+      <direction>0.001 0.625 -0.78000000000000003</direction>
+      <diffuse>0.903999984 0.903999984 0.903999984 1</diffuse>
+      <specular>0.270999998 0.270999998 0.270999998 1</specular>
+      <attenuation>
+        <range>2000</range>
+        <linear>0</linear>
+        <constant>1</constant>
+        <quadratic>0</quadratic>
+      </attenuation>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+  </world>
+</sdf>
