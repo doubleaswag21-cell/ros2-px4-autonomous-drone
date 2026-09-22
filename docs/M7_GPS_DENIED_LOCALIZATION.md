@@ -37,6 +37,8 @@ Sensor timing, message flow, and Point-LIO input handling were tested until the 
 
 ## M7C — Localization Output Validation
 
+![Point-LIO registered cloud and estimated trajectory](../images/point_lio/m7_pointlio_path.png)
+
 Point-LIO output was monitored while the drone moved in simulation.
 Validation focused on:
 
@@ -97,6 +99,8 @@ This created the link between the ROS 2 localization stack and the PX4 flight co
 
 ## M7G — GPS + External-Vision Fusion
 
+![PX4 external-vision fusion with GNSS unavailable](../images/results/m7_ev_fusion_no_gnss.png)
+
 PX4 EKF2 was configured to accept the converted Point-LIO estimate as an external-vision source.
 
 The initial fusion stage was tested with normal simulation support still available so that the external-vision pipeline could be verified safely before removing GPS.
@@ -127,6 +131,8 @@ The drone successfully:
 This demonstrated that the drone could maintain controlled flight without GPS.
 
 ## M7I — GPS-Denied Autonomous Waypoint Mission
+
+![Completed GPS-denied waypoint mission terminal output](../images/results/m7i_terminal_complete.png)
 
 A dedicated ROS 2 controller named `gps_denied_waypoint` was developed for the final M7 validation.
 

@@ -25,6 +25,8 @@ The current system supports:
 
 ## Latest Demonstration
 
+![GPS-denied autonomous waypoint mission](images/results/m7i_gazebo_mission.png)
+
 The drone successfully completed a GPS-denied autonomous mission using Point-LIO localization and PX4 external-vision fusion.
 
 Mission sequence:

@@ -37,6 +37,8 @@ The custom simulation target was launched using:
 
 ## Validation
 
+![Custom slam_quad model](../images/drone/m3_slam_quad_model.png)
+
 The custom vehicle was tested independently before adding the full autonomy stack.
 
 Validation included:

@@ -37,6 +37,8 @@ Gazebo sensor data was bridged into ROS 2, and the complete TF tree was inspecte
 
 ### TF and Sensor Validation
 
+![Raw 3D LiDAR and TF visualization](../images/drone/m4_lidar_rviz.png)
+
 The following were verified:
 
 1. LiDAR data was available in ROS 2.
