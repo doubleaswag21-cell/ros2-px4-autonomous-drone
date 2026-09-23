@@ -6,7 +6,7 @@ The project uses a custom quadcopter model in Gazebo Harmonic, PX4 SITL for flig
 
 ## Current Status
 
-Milestones M0-M7 are complete.
+Milestones M0-M8 are complete.
 
 The current system supports:
 
@@ -22,27 +22,35 @@ The current system supports:
 - GPS-denied position hold
 - GPS-denied autonomous waypoint navigation
 - Autonomous landing and disarming
+- OctoMap-based 3D occupancy mapping
+- Persistent `.bt` map saving and reloading
 
 ## Latest Demonstration
 
-![GPS-denied autonomous waypoint mission](images/results/m7i_gazebo_mission.png)
+![M8 OctoMap 3D occupancy mapping](images/octomap/m8_free_space.png)
 
-The drone successfully completed a GPS-denied autonomous mission using Point-LIO localization and PX4 external-vision fusion.
+Milestone 8 demonstrated live 3D occupancy mapping using Point-LIO and OctoMap.
+The validated mapping pipeline is:
 
-Mission sequence:
+    Point-LIO
+    /cloud_registered_body
+            +
+    camera_init → body TF
+            ↓
+    OctoMap Server
+            ↓
+    3D Occupancy Map
 
-1. Wait for stable localization
-2. Enter PX4 Offboard mode
-3. Arm
-4. Take off approximately 0.85 m
-5. Fly approximately 1.0 m to a waypoint
-6. Hold position
-7. Return to the starting position
-8. Hold position
-9. Land
-10. Automatically disarm
+The map was generated at `0.10 m` voxel resolution and preserved open interior space while reconstructing room boundaries and internal obstacles.
 
-GPS was disabled during the mission.
+The resulting OctoMap was also saved and successfully reloaded as:
+
+    octomap/maps/slam_room_office_m8.bt
+
+Full M8 documentation:
+
+**[M8 — OctoMap 3D Occupancy Mapping](docs/M8_OCTOMAP_3D_MAPPING.md)**
+
 ## System Architecture
 
 ```text
@@ -52,28 +60,29 @@ Gazebo Harmonic
       v
     ROS 2
       |
-      +------> Point-LIO
-      |           |
-      |           v
-      |      LiDAR-Inertial
-      |        Odometry
-      |           |
-      |           v
-      |      slam_to_px4
-      |           |
-      |           v
-      +------> PX4 External Vision
-                  |
-                  v
-              PX4 EKF2
-                  |
-                  v
-           Offboard Controller
-                  |
-                  v
-             slam_quad
-
-
+      v
+  Point-LIO
+      |
+      +-----------------------------+
+      |                             |
+      v                             v
+LiDAR-Inertial                /cloud_registered_body
+  Odometry                           |
+      |                              v
+      v                        OctoMap Server
+ slam_to_px4                         |
+      |                              v
+      v                      3D Occupancy Map
+PX4 External Vision
+      |
+      v
+   PX4 EKF2
+      |
+      v
+Offboard Controller
+      |
+      v
+  slam_quad
 ```
 
 ## Coordinate Conversion
@@ -96,6 +105,7 @@ PX4 Z = -ROS Z
 - Gazebo Harmonic
 - Micro XRCE-DDS Agent
 - Point-LIO
+- OctoMap / octomap_server
 - Python
 - C++
 - QGroundControl
@@ -120,6 +130,10 @@ ros2-px4-autonomous-drone/
 │
 ├── gazebo/
 │   └── worlds/
+│
+├── octomap/
+│   └── maps/
+│       └── slam_room_office_m8.bt
 │
 ├── docs/
 ├── images/
@@ -146,7 +160,7 @@ The `drone_offboard_control` package currently contains:
 - **M4** — Sensor and TF integration
 - **M5-M6** — Localization preparation and integration
 - **M7** — GPS-denied localization and autonomous navigation
-- **M8** — 3D occupancy mapping
+- **M8** — 3D occupancy mapping ✅ ([documentation](docs/M8_OCTOMAP_3D_MAPPING.md))
 - **M9** — 3D path planning
 - **M10** — Obstacle avoidance
 - **M11** — Autonomous waypoint navigation
@@ -165,12 +179,13 @@ External dependencies include:
 - Gazebo
 - Micro XRCE-DDS
 - Point-LIO
+- OctoMap
 
 Original third-party model assets retain their respective licenses and attribution. The `slam_quad` model directory includes the original BSD 3-Clause license associated with the upstream model assets.
 
 ## Development Status
 
-This repository currently documents the project through **M7: GPS-denied autonomous waypoint navigation**.
+This repository currently documents the project through **M8: OctoMap 3D occupancy mapping**.
 
-Development continues with M8 and later milestones.
+Milestones M0-M8 are complete. Development continues with M9 and later milestones.
 
