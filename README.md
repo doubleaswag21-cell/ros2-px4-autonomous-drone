@@ -183,49 +183,49 @@ PX4 Z = -ROS Z
 
 ## Repository Structure
 
+```text
 ros2-px4-autonomous-drone/
-    |
-    +-- ros2_ws/
-    |   +-- src/
-    |       +-- drone_offboard_control/
-    |       +-- slam_quad_description/
-    |       +-- drone_3d_planner/
-    |
-    +-- px4/
-    |   +-- slam_quad/
-    |       +-- airframe/
-    |       +-- models/
-    |
-    +-- point_lio/
-    |   +-- config/
-    |   |   +-- velody16.yaml
-    |   |   +-- velody16_m10.yaml
-    |   +-- launch/
-    |   +-- patches/
-    |       +-- m10_filter_nonfinite_lidar.patch
-    |
-    +-- gazebo/
-    |   +-- worlds/
-    |       +-- m10_large_world.sdf
-    |
-    +-- octomap/
-    |   +-- maps/
-    |       +-- slam_room_office_m8.bt
-    |
-    +-- docs/
-    |   +-- M8_OCTOMAP_3D_MAPPING.md
-    |   +-- M9_3D_ASTAR_PLANNING.md
-    |   +-- M10_LOCALIZATION_TESTING.md
-    |
-    +-- images/
-    |   +-- octomap/
-    |   +-- m9_planning/
-    |   +-- m10_testing/
-    |
-    +-- scripts/
-The repository contains project-specific ROS 2
-packages, simulation environments, configuration
-files, validation results, and documentation.
+|-- ros2_ws/
+|   `-- src/
+|       |-- drone_offboard_control/
+|       |-- slam_quad_description/
+|       `-- drone_3d_planner/
+|
+|-- px4/
+|   `-- slam_quad/
+|       |-- airframe/
+|       `-- models/
+|
+|-- point_lio/
+|   |-- config/
+|   |   |-- velody16.yaml
+|   |   `-- velody16_m10.yaml
+|   |-- launch/
+|   `-- patches/
+|       `-- m10_filter_nonfinite_lidar.patch
+|
+|-- gazebo/
+|   `-- worlds/
+|       `-- m10_large_world.sdf
+|
+|-- octomap/
+|   `-- maps/
+|       `-- slam_room_office_m8.bt
+|
+|-- docs/
+|   |-- M8_OCTOMAP_3D_MAPPING.md
+|   |-- M9_3D_ASTAR_PLANNING.md
+|   `-- M10_LOCALIZATION_TESTING.md
+|
+|-- images/
+|   |-- octomap/
+|   |-- m9_planning/
+|   `-- m10_testing/
+|
+`-- scripts/
+```
+
+The repository contains project-specific ROS 2 packages, simulation environments, configuration files, validation results, and documentation.
 
 ## Custom ROS 2 Nodes
 
