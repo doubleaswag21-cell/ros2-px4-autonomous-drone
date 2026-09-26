@@ -6,12 +6,12 @@ The project uses a custom quadcopter model in Gazebo Harmonic, PX4 SITL for flig
 
 ## Current Status
 
-Milestones M0-M8 are complete.
+**Milestones M0–M9 complete. M10 in progress.**
 
 The current system supports:
 
 - PX4 SITL flight in Gazebo Harmonic
-- ROS 2 ↔ PX4 communication through Micro XRCE-DDS
+- ROS 2 and PX4 communication through Micro XRCE-DDS
 - Custom ROS 2 Offboard flight control
 - Custom `slam_quad` Gazebo/PX4 vehicle model
 - 3D LiDAR, RGB-D camera, and IMU integration
@@ -24,66 +24,135 @@ The current system supports:
 - Autonomous landing and disarming
 - OctoMap-based 3D occupancy mapping
 - Persistent `.bt` map saving and reloading
+- Custom offline 3D A* path planning
+- 3D occupancy and obstacle-clearance validation
+
+Current M10 development focuses on Point-LIO localization
+robustness, ground-truth comparison, and preparation for
+integrated autonomous obstacle avoidance.
 
 ## Latest Demonstration
 
-![M8 OctoMap 3D occupancy mapping](images/octomap/m8_free_space.png)
+### M9 — 3D A* Path Planning
 
-Milestone 8 demonstrated live 3D occupancy mapping using Point-LIO and OctoMap.
-The validated mapping pipeline is:
+![M9 3D A* path planning](images/m9_planning/m9_path_perspective.png)
 
-    Point-LIO
-    /cloud_registered_body
-            +
-    camera_init → body TF
-            ↓
-    OctoMap Server
-            ↓
-    3D Occupancy Map
+Milestone 9 implemented a custom C++ 3D A* planner using
+the saved M8 OctoMap.
 
-The map was generated at `0.10 m` voxel resolution and preserved open interior space while reconstructing room boundaries and internal obstacles.
+The planner performs three-dimensional occupancy checks,
+applies horizontal and vertical obstacle-clearance
+constraints, and publishes the resulting path to RViz.
 
-The resulting OctoMap was also saved and successfully reloaded as:
+**Validated planning results:**
 
-    octomap/maps/slam_room_office_m8.bt
+| Test | Result |
+|---|---:|
+| Standard A* planning | PASS |
+| Expanded nodes | 9,250 |
+| Path nodes | 38 |
+| Standard path distance | 4.65 m |
+| Standard path altitude | 1.05 m |
+| Altitude-changing 3D test | PASS |
+| 3D test path distance | 4.91 m |
+| 3D test altitude range | 0.85–1.65 m |
+| Final path validation | PASS |
+The planner uses 0.30 m horizontal clearance and
+0.20 m vertical clearance.
 
-Full M8 documentation:
+**[View M9 documentation](docs/M9_3D_ASTAR_PLANNING.md)**
+
+### M10 — Localization Robustness Testing
+
+![M10 geometrically rich Gazebo world](images/m10_testing/m10_large_world.png)
+
+M10 is currently evaluating Point-LIO localization in
+a larger Gazebo environment containing varied geometric
+structures and obstacles.
+
+The first testing stage includes:
+
+- Development of a larger geometrically rich environment
+- LiDAR preprocessing investigation
+- Filtering of non-finite simulated LiDAR measurements
+- Localization testing at approximately 1.8 m altitude
+- Comparison of Point-LIO estimates with Gazebo ground truth
+
+Initial testing indicated improved tracking behavior in
+the new environment. Exact numerical tracking-error
+results will be documented separately.
+
+**[View M10 testing documentation](docs/M10_LOCALIZATION_TESTING.md)**
+
+Previous milestone:
 
 **[M8 — OctoMap 3D Occupancy Mapping](docs/M8_OCTOMAP_3D_MAPPING.md)**
 
+M9 demonstrates offline planning using a frozen map.
+Integrated online replanning and autonomous obstacle
+avoidance remain future development objectives.
+
 ## System Architecture
 
-```text
-Gazebo Harmonic
-      |
-      | 3D LiDAR + IMU + Camera
-      v
-    ROS 2
-      |
-      v
-  Point-LIO
-      |
-      +-----------------------------+
-      |                             |
-      v                             v
-LiDAR-Inertial                /cloud_registered_body
-  Odometry                           |
-      |                              v
-      v                        OctoMap Server
- slam_to_px4                         |
-      |                              v
-      v                      3D Occupancy Map
-PX4 External Vision
-      |
-      v
-   PX4 EKF2
-      |
-      v
-Offboard Controller
-      |
-      v
-  slam_quad
-```
+The project currently contains a GPS-denied flight
+control pipeline and a separate mapping and planning
+pipeline.
+
+**GPS-denied flight control:**
+
+    Gazebo: LiDAR + IMU
+              |
+              v
+             ROS 2
+              |
+              v
+           Point-LIO
+              |
+              v
+         slam_to_px4
+              |
+              v
+       PX4 External Vision
+              |
+              v
+           PX4 EKF2
+              |
+              v
+      Offboard Controller
+              |
+              v
+           slam_quad
+**3D mapping and offline planning:**
+
+    Point-LIO
+        |
+        v
+    Body-frame Point Cloud
+        |
+        v
+    OctoMap Server
+        |
+        v
+    3D Occupancy Map
+        |
+        v
+    Saved M8 OctoMap
+        |
+        v
+    Custom 3D A*
+        |
+        v
+    Clearance and Path Validation
+        |
+        v
+    /planned_path
+        |
+        v
+       RViz
+The second pipeline currently demonstrates offline
+path planning and visualization. Connecting the
+planned routes to autonomous flight execution is
+a subsequent development stage.
 
 ## Coordinate Conversion
 
@@ -106,39 +175,57 @@ PX4 Z = -ROS Z
 - Micro XRCE-DDS Agent
 - Point-LIO
 - OctoMap / octomap_server
+- Custom C++ 3D A* planner
+- RViz
 - Python
 - C++
 - QGroundControl
 
 ## Repository Structure
 
-```text
 ros2-px4-autonomous-drone/
-├── ros2_ws/
-│   └── src/
-│       ├── drone_offboard_control/
-│       └── slam_quad_description/
-│
-├── px4/
-│   └── slam_quad/
-│       ├── airframe/
-│       └── models/
-│
-├── point_lio/
-│   ├── config/
-│   └── launch/
-│
-├── gazebo/
-│   └── worlds/
-│
-├── octomap/
-│   └── maps/
-│       └── slam_room_office_m8.bt
-│
-├── docs/
-├── images/
-└── scripts/
-```
+    |
+    +-- ros2_ws/
+    |   +-- src/
+    |       +-- drone_offboard_control/
+    |       +-- slam_quad_description/
+    |       +-- drone_3d_planner/
+    |
+    +-- px4/
+    |   +-- slam_quad/
+    |       +-- airframe/
+    |       +-- models/
+    |
+    +-- point_lio/
+    |   +-- config/
+    |   |   +-- velody16.yaml
+    |   |   +-- velody16_m10.yaml
+    |   +-- launch/
+    |   +-- patches/
+    |       +-- m10_filter_nonfinite_lidar.patch
+    |
+    +-- gazebo/
+    |   +-- worlds/
+    |       +-- m10_large_world.sdf
+    |
+    +-- octomap/
+    |   +-- maps/
+    |       +-- slam_room_office_m8.bt
+    |
+    +-- docs/
+    |   +-- M8_OCTOMAP_3D_MAPPING.md
+    |   +-- M9_3D_ASTAR_PLANNING.md
+    |   +-- M10_LOCALIZATION_TESTING.md
+    |
+    +-- images/
+    |   +-- octomap/
+    |   +-- m9_planning/
+    |   +-- m10_testing/
+    |
+    +-- scripts/
+The repository contains project-specific ROS 2
+packages, simulation environments, configuration
+files, validation results, and documentation.
 
 ## Custom ROS 2 Nodes
 
@@ -150,23 +237,27 @@ The `drone_offboard_control` package currently contains:
 - `lidar_time_converter` — converts LiDAR timestamps for Point-LIO compatibility
 - `gps_denied_waypoint` — GPS-denied autonomous waypoint controller
 
+The separate `drone_3d_planner` package contains:
+
+- `astar_3d` — custom three-dimensional A* path planner
+- `octomap_query` — interactive OctoMap occupancy-query utility
 
 ## Project Milestones
 
-- **M0** — PX4 SITL + Gazebo flight
-- **M1** — ROS 2 ↔ PX4 communication
-- **M2** — Autonomous Offboard control
-- **M3** — Custom `slam_quad` vehicle
-- **M4** — Sensor and TF integration
-- **M5-M6** — Localization preparation and integration
-- **M7** — GPS-denied localization and autonomous navigation
-- **M8** — 3D occupancy mapping ✅ ([documentation](docs/M8_OCTOMAP_3D_MAPPING.md))
-- **M9** — 3D path planning
-- **M10** — Obstacle avoidance
-- **M11** — Autonomous waypoint navigation
-- **M12** — Frontier exploration
-- **M13** — Full autonomous exploration
-- **M14** — Optional semantic mapping
+- **M0** — PX4 SITL + Gazebo flight: complete
+- **M1** — ROS 2 and PX4 communication: complete
+- **M2** — Autonomous Offboard control: complete
+- **M3** — Custom `slam_quad` vehicle: complete
+- **M4** — Sensor and TF integration: complete
+- **M5–M6** — Localization preparation and integration: complete
+- **M7** — GPS-denied localization and autonomous navigation: complete
+- **M8** — [3D occupancy mapping](docs/M8_OCTOMAP_3D_MAPPING.md): complete
+- **M9** — [3D A* path planning](docs/M9_3D_ASTAR_PLANNING.md): complete
+- **M10** — [Localization robustness testing and obstacle-avoidance development](docs/M10_LOCALIZATION_TESTING.md): in progress
+- **M11** — Autonomous waypoint integration with planned routes: planned
+- **M12** — Frontier exploration: planned
+- **M13** — Full autonomous exploration: planned
+- **M14** — Optional semantic mapping: planned
 
 ## Third-Party Components
 
@@ -185,7 +276,16 @@ Original third-party model assets retain their respective licenses and attributi
 
 ## Development Status
 
-This repository currently documents the project through **M8: OctoMap 3D occupancy mapping**.
+**M0–M9 are complete. M10 is in progress.**
 
-Milestones M0-M8 are complete. Development continues with M9 and later milestones.
+The project currently demonstrates GPS-denied autonomous
+flight, LiDAR-inertial localization, 3D occupancy mapping,
+and validated offline 3D A* path planning.
+The current development stage focuses on localization
+robustness in larger environments and preparation for
+integrating the planner with autonomous flight and
+obstacle avoidance.
+
+See the individual milestone documents for technical
+details, implementation, testing procedures, and results.
 
