@@ -60,7 +60,7 @@ constraints, and publishes the resulting path to RViz.
 The planner uses 0.30 m horizontal clearance and
 0.20 m vertical clearance.
 
-**[View M9 documentation](docs/M9_3D_ASTAR_PLANNING.md)**
+**[View M9 documentation](docs/M09_3D_ASTAR_PLANNING.md)**
 
 ### M10 — Localization Robustness Testing
 
@@ -86,7 +86,7 @@ results will be documented separately.
 
 Previous milestone:
 
-**[M8 — OctoMap 3D Occupancy Mapping](docs/M8_OCTOMAP_3D_MAPPING.md)**
+**[M8 — OctoMap 3D Occupancy Mapping](docs/M08_OCTOMAP_3D_MAPPING.md)**
 
 M9 demonstrates offline planning using a frozen map.
 Integrated online replanning and autonomous obstacle
@@ -213,8 +213,8 @@ ros2-px4-autonomous-drone/
 |       `-- slam_room_office_m8.bt
 |
 |-- docs/
-|   |-- M8_OCTOMAP_3D_MAPPING.md
-|   |-- M9_3D_ASTAR_PLANNING.md
+|   |-- M08_OCTOMAP_3D_MAPPING.md
+|   |-- M09_3D_ASTAR_PLANNING.md
 |   `-- M10_LOCALIZATION_TESTING.md
 |
 |-- images/
@@ -251,8 +251,8 @@ The separate `drone_3d_planner` package contains:
 - **M4** — Sensor and TF integration: complete
 - **M5–M6** — Localization preparation and integration: complete
 - **M7** — GPS-denied localization and autonomous navigation: complete
-- **M8** — [3D occupancy mapping](docs/M8_OCTOMAP_3D_MAPPING.md): complete
-- **M9** — [3D A* path planning](docs/M9_3D_ASTAR_PLANNING.md): complete
+- **M8** — [3D occupancy mapping](docs/M08_OCTOMAP_3D_MAPPING.md): complete
+- **M9** — [3D A* path planning](docs/M09_3D_ASTAR_PLANNING.md): complete
 - **M10** — [Localization robustness testing and obstacle-avoidance development](docs/M10_LOCALIZATION_TESTING.md): in progress
 - **M11** — Autonomous waypoint integration with planned routes: planned
 - **M12** — Frontier exploration: planned
