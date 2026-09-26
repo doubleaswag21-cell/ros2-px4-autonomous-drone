@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
+<!--
+  Copyright (c) 2026 Ammaar Ahmed
+  Project-specific sensor-frame description.
+  SPDX-License-Identifier: Apache-2.0
+-->
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro"
        name="slam_quad">

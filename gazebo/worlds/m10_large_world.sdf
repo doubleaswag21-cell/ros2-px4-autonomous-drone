@@ -1,4 +1,16 @@
 <?xml version="1.0" ?>
+<!--
+  M10 Geometrically Rich Gazebo Environment
+
+  Custom environment design, obstacle geometry, and
+  experimental layout developed by Ammaar Ahmed, 2026.
+
+  Created for Point-LIO localization robustness testing
+  and comparison against Gazebo ground truth.
+
+  Standard Gazebo/PX4 components and any third-party
+  materials retain their respective ownership and licenses.
+-->
 <sdf version="1.10">
   <world name="m10_large_world">
 

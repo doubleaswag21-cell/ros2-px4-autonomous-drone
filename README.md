@@ -31,6 +31,27 @@ Current M10 development focuses on Point-LIO localization
 robustness, ground-truth comparison, and preparation for
 integrated autonomous obstacle avoidance.
 
+## Original Engineering Contributions
+
+**Project developer: Ammaar Ahmed**
+
+This project includes original implementation, customization,
+and system integration work.
+
+| Component | Contribution |
+|---|---|
+| C++ 3D A* planner | Custom ROS 2 implementation, obstacle-clearance constraints, and path validation |
+| OctoMap query node | Custom occupancy-map querying utility |
+| URDF/Xacro | Project-specific drone sensor frames and TF integration |
+| Gazebo environments | Custom environments for mapping, localization, and navigation experiments |
+| slam_quad | Vehicle customization, sensor integration, and PX4/Gazebo configuration |
+| ROS 2 autonomy | Project-specific flight-control, localization-integration, and mission functionality |
+The project incorporates third-party open-source software
+and existing model assets. Original upstream copyrights
+and licenses are preserved.
+
+**[Detailed authorship and acknowledgments](AUTHORS.md)**
+
 ## Latest Demonstration
 
 ### M9 — 3D A* Path Planning

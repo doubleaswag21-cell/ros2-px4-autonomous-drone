@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Project-specific slam_quad configuration and modifications
+  developed by Ammaar Ahmed, 2026.
+
+  Based on third-party quadcopter model assets.
+  Original model assets: Copyright (c) 2022 Rudis Laboratories.
+  Original license: BSD 3-Clause (see LICENSE).
+
+  Original third-party attribution and licensing are retained.
+-->
 <sdf version='1.9'>
   <model name='slam_quad'>
     <include merge='true'>

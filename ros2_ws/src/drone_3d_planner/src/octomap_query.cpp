@@ -1,3 +1,6 @@
+// Copyright (c) 2026 Ammaar Ahmed
+// Project-specific ROS 2 implementation.
+
 #include <memory>
 #include <string>
 
