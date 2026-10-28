@@ -49,6 +49,24 @@ Developed and integrated project-specific functionality for
 autonomous flight, GPS-denied localization, occupancy mapping,
 mission execution, and experimental validation.
 
+### Continuous Autonomous Exploration Stack
+
+Developed the project-specific M13 autonomy modules:
+
+- `frontier_detector_live` — live OctoMap frontier extraction,
+  clustering, candidate filtering, safe standoff generation,
+  scoring, ranking, and frontier-goal selection.
+- `astar_3d_live` — live three-dimensional A* planning,
+  obstacle-clearance checks, path validation, safe-start recovery,
+  and event-driven replanning.
+- `m13g_continuous_explorer` — PX4 Offboard mission supervision,
+  automatic takeoff, path execution, hold/replan behavior,
+  landing, and disarming.
+- `local_path_monitor` — lightweight LiDAR-based active-path
+  blockage detection and reactive replanning trigger.
+These components form the project-specific exploration and
+planning layer built around Point-LIO, OctoMap, ROS 2, and PX4.
+
 ## Third-Party Acknowledgments
 
 This project uses and integrates external open-source software,

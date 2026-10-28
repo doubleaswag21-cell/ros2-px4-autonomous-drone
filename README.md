@@ -1,179 +1,226 @@
 # ROS 2 + PX4 Autonomous GPS-Denied Drone
 
-A ROS 2 Jazzy and PX4-based autonomous quadcopter platform developed for GPS-denied localization, mapping, navigation, and indoor exploration.
+A research-oriented ROS 2 and PX4 autonomous quadcopter platform for GPS-denied 3D localization, mapping, planning, and autonomous exploration.
 
-The project uses a custom quadcopter model in Gazebo Harmonic, PX4 SITL for flight control, ROS 2 for autonomy and middleware, and Point-LIO for LiDAR-inertial localization.
+The project combines Point-LIO localization, PX4 EKF2 external-vision fusion, and live OctoMap mapping with a custom ROS 2 autonomy stack for frontier-based exploration, live 3D A* planning, PX4 Offboard path execution, and reactive replanning.
 
 ## Current Status
 
-**Milestones M0–M9 complete. M10 in progress.**
+**Continuous GPS-denied autonomous 3D exploration has been demonstrated in simulation.**
 
 The current system supports:
 
 - PX4 SITL flight in Gazebo Harmonic
 - ROS 2 and PX4 communication through Micro XRCE-DDS
-- Custom ROS 2 Offboard flight control
 - Custom `slam_quad` Gazebo/PX4 vehicle model
 - 3D LiDAR, RGB-D camera, and IMU integration
-- ROS 2 TF sensor-frame integration
 - Point-LIO LiDAR-inertial localization
-- Point-LIO odometry conversion for PX4 external vision
-- PX4 external-vision fusion
-- GPS-denied position hold
-- GPS-denied autonomous waypoint navigation
-- Autonomous landing and disarming
-- OctoMap-based 3D occupancy mapping
-- Persistent `.bt` map saving and reloading
-- Custom offline 3D A* path planning
-- 3D occupancy and obstacle-clearance validation
+- PX4 EKF2 external-vision fusion
+- GPS-denied position hold and autonomous flight
+- Live OctoMap-based 3D occupancy mapping
+- Online map expansion during flight
+- Custom live frontier detection and clustering
+- Safe frontier-goal generation and ranking
+- Custom live 3D A* path planning
+- Autonomous PX4 Offboard execution of 3D paths
+- Continuous frontier-based exploration
+- Local active-path obstacle monitoring
+- Hold + event-driven replanning
+- Demonstrated obstacle avoidance and recovery
+- Safe automatic landing and disarming when recovery fails
 
-Current M10 development focuses on Point-LIO localization
-robustness, ground-truth comparison, and preparation for
-integrated autonomous obstacle avoidance.
+The current autonomy stack has progressed through **M13G continuous
+autonomous exploration** in simulation.
+
+The system remains under development for smoother exploration,
+fewer unnecessary replans, and increased robustness.
 
 ## Original Engineering Contributions
 
 **Project developer: Ammaar Ahmed**
 
 This project includes original implementation, customization,
-and system integration work.
+and system-integration work.
 
 | Component | Contribution |
 |---|---|
-| C++ 3D A* planner | Custom ROS 2 implementation, obstacle-clearance constraints, and path validation |
+| Offline C++ 3D A* planner | Custom OctoMap-based 3D planning, clearance constraints, and path validation |
+| `frontier_detector_live` | Custom live frontier extraction, clustering, filtering, safe standoff generation, scoring, and goal selection |
+| `astar_3d_live` | Custom live 3D A* planner with clearance checking, safe-start recovery, path validation, and event-driven replanning |
+| `m13g_continuous_explorer` | Custom autonomous mission supervisor for takeoff, Offboard entry, 3D path execution, replanning, landing, and disarming |
+| `local_path_monitor` | Custom LiDAR-based active-path blockage detection and reactive replanning trigger |
 | OctoMap query node | Custom occupancy-map querying utility |
 | URDF/Xacro | Project-specific drone sensor frames and TF integration |
-| Gazebo environments | Custom environments for mapping, localization, and navigation experiments |
-| slam_quad | Vehicle customization, sensor integration, and PX4/Gazebo configuration |
-| ROS 2 autonomy | Project-specific flight-control, localization-integration, and mission functionality |
-The project incorporates third-party open-source software
-and existing model assets. Original upstream copyrights
-and licenses are preserved.
+| Gazebo environments | Custom environments for mapping, localization, planning, and exploration experiments |
+| `slam_quad` | Vehicle customization, sensor integration, and PX4/Gazebo configuration |
+| System integration | Integration of Point-LIO, PX4 EKF2 external vision, OctoMap, custom planning, and PX4 Offboard execution |
 
+Point-LIO, PX4, ROS 2, Gazebo, and OctoMap are integrated
+third-party systems. Original upstream copyrights and licenses
+are preserved.
 **[Detailed authorship and acknowledgments](AUTHORS.md)**
 
 ## Latest Demonstration
 
-### M9 — 3D A* Path Planning
+### M13 — Continuous Autonomous 3D Exploration
 
-![M9 3D A* path planning](images/m9_planning/m9_path_perspective.png)
+<p align="center">
+  <img src="media/m13/full_exploration_1.gif" width="49%" alt="Continuous autonomous exploration part 1">
+  <img src="media/m13/full_exploration_2.gif" width="49%" alt="Continuous autonomous exploration part 2">
+</p>
+<p align="center">
+  <strong>Continuous Autonomous Exploration — Parts 1 and 2</strong>
+</p>
 
-Milestone 9 implemented a custom C++ 3D A* planner using
-the saved M8 OctoMap.
+The latest system integrates the earlier localization, mapping,
+and planning milestones into a continuous GPS-denied exploration
+pipeline.
 
-The planner performs three-dimensional occupancy checks,
-applies horizontal and vertical obstacle-clearance
-constraints, and publishes the resulting path to RViz.
+The stable autonomy flow is:
 
-**Validated planning results:**
+    Point-LIO localization
+            |
+            v
+    PX4 EKF2 external vision
+            |
+            v
+       Live OctoMap
+            |
+            v
+    Custom frontier detector
+            |
+            v
+      Safe frontier goal
+            |
+            v
+      Custom live 3D A*
+            |
+            v
+    M13G exploration supervisor
+            |
+            v
+      PX4 Offboard control
+A lightweight local safety layer operates in parallel:
 
-| Test | Result |
-|---|---:|
-| Standard A* planning | PASS |
-| Expanded nodes | 9,250 |
-| Path nodes | 38 |
-| Standard path distance | 4.65 m |
-| Standard path altitude | 1.05 m |
-| Altitude-changing 3D test | PASS |
-| 3D test path distance | 4.91 m |
-| 3D test altitude range | 0.85–1.65 m |
-| Final path validation | PASS |
-The planner uses 0.30 m horizontal clearance and
-0.20 m vertical clearance.
+    LiDAR / Point-LIO cloud
+            |
+            v
+      Local path monitor
+            |
+            v
+      Path blockage
+            |
+            v
+        M13G HOLD
+            |
+            v
+    Immediate A* replan
+            |
+            v
+     Continue exploration
 
-**[View M9 documentation](docs/M09_3D_ASTAR_PLANNING.md)**
+The demonstrated system performs autonomous takeoff, online
+map expansion, frontier selection, live 3D planning, path
+execution, replanning, continued exploration, and safe landing.
+**[View full M13 technical documentation](docs/M13_CONTINUOUS_AUTONOMOUS_EXPLORATION.md)**
 
-### M10 — Localization Robustness Testing
+### Frontier Selection + Live 3D A* Replanning
 
-![M10 geometrically rich Gazebo world](images/m10_testing/m10_large_world.png)
+![Frontier selection and replanning](media/m13/frontier_replanning.gif)
 
-M10 is currently evaluating Point-LIO localization in
-a larger Gazebo environment containing varied geometric
-structures and obstacles.
+Frontier goals and planned paths update continuously as the
+occupancy map changes.
 
-The first testing stage includes:
+### Online 3D Mapping
 
-- Development of a larger geometrically rich environment
-- LiDAR preprocessing investigation
-- Filtering of non-finite simulated LiDAR measurements
-- Localization testing at approximately 1.8 m altitude
-- Comparison of Point-LIO estimates with Gazebo ground truth
+![Online 3D map growth](media/m13/map_growth.gif)
 
-Initial testing indicated improved tracking behavior in
-the new environment. Exact numerical tracking-error
-results will be documented separately.
+The Point-LIO / OctoMap representation expands online as the
+drone enters previously unseen areas.
 
-**[View M10 testing documentation](docs/M10_LOCALIZATION_TESTING.md)**
+### Local Obstacle Avoidance + Recovery
 
-Previous milestone:
+![Obstacle avoidance and recovery](media/m13/obstacle_avoidance.gif)
 
-**[M8 — OctoMap 3D Occupancy Mapping](docs/M08_OCTOMAP_3D_MAPPING.md)**
+The local path monitor can place the exploration supervisor into
+HOLD, request an immediate global replan, and allow flight to
+continue once a valid replacement path is available.
 
-M9 demonstrates offline planning using a frozen map.
-Integrated online replanning and autonomous obstacle
-avoidance remain future development objectives.
+Obstacle avoidance and reactive replanning have been demonstrated
+successfully in simulation, but remain under tuning for smoother
+behavior and fewer unnecessary replans.
+
+Previous milestone documentation:
+
+- **[M8 — OctoMap 3D Occupancy Mapping](docs/M08_OCTOMAP_3D_MAPPING.md)**
+- **[M9 — 3D A* Path Planning](docs/M09_3D_ASTAR_PLANNING.md)**
+- **[M10 — Localization Robustness Testing](docs/M10_LOCALIZATION_TESTING.md)**
 
 ## System Architecture
 
-The project currently contains a GPS-denied flight
-control pipeline and a separate mapping and planning
-pipeline.
+The current autonomy pipeline is fully three-dimensional and does
+not use the Nav2 controller.
 
-**GPS-denied flight control:**
+    Gazebo Harmonic
+      LiDAR + IMU
+          |
+          v
+       Point-LIO
+          |
+          +-----------------------------+
+          |                             |
+          v                             v
+    Localization                Registered cloud
+          |                             |
+          v                             v
+     slam_to_px4                  Live OctoMap
+          |                             |
+          v                             v
+    PX4 External Vision         Frontier Detector
+          |                             |
+          v                             v
+       PX4 EKF2                 Safe Frontier Goal
+                                        |
+                                        v
+                                  Live 3D A*
+                                        |
+                                        v
+                                  /planned_path
+                                        |
+                                        v
+                               M13G Explorer
+                                        |
+                                        v
+                                PX4 Offboard
+                                        |
+                                        v
+                                    slam_quad
+Local safety and reactive replanning operate alongside the global
+planner:
 
-    Gazebo: LiDAR + IMU
-              |
-              v
-             ROS 2
-              |
-              v
-           Point-LIO
-              |
-              v
-         slam_to_px4
-              |
-              v
-       PX4 External Vision
-              |
-              v
-           PX4 EKF2
-              |
-              v
-      Offboard Controller
-              |
-              v
-           slam_quad
-**3D mapping and offline planning:**
+    Active 3D path + LiDAR cloud
+               |
+               v
+        Local Path Monitor
+               |
+               v
+      /local_path_blocked
+               |
+               v
+           M13G HOLD
+               |
+               v
+      /planner_replan_now
+               |
+               v
+          Live 3D A*
+               |
+               v
+        Replacement path
 
-    Point-LIO
-        |
-        v
-    Body-frame Point Cloud
-        |
-        v
-    OctoMap Server
-        |
-        v
-    3D Occupancy Map
-        |
-        v
-    Saved M8 OctoMap
-        |
-        v
-    Custom 3D A*
-        |
-        v
-    Clearance and Path Validation
-        |
-        v
-    /planned_path
-        |
-        v
-       RViz
-The second pipeline currently demonstrates offline
-path planning and visualization. Connecting the
-planned routes to autonomous flight execution is
-a subsequent development stage.
+PX4 remains responsible for low-level flight stabilization while
+the project-specific ROS 2 nodes implement exploration, planning,
+mission supervision, and replanning behavior.
 
 ## Coordinate Conversion
 
@@ -204,64 +251,81 @@ PX4 Z = -ROS Z
 
 ## Repository Structure
 
-```text
 ros2-px4-autonomous-drone/
-|-- ros2_ws/
-|   `-- src/
-|       |-- drone_offboard_control/
-|       |-- slam_quad_description/
-|       `-- drone_3d_planner/
-|
-|-- px4/
-|   `-- slam_quad/
-|       |-- airframe/
-|       `-- models/
-|
-|-- point_lio/
-|   |-- config/
-|   |   |-- velody16.yaml
-|   |   `-- velody16_m10.yaml
-|   |-- launch/
-|   `-- patches/
-|       `-- m10_filter_nonfinite_lidar.patch
-|
-|-- gazebo/
-|   `-- worlds/
-|       `-- m10_large_world.sdf
-|
-|-- octomap/
-|   `-- maps/
-|       `-- slam_room_office_m8.bt
-|
-|-- docs/
-|   |-- M08_OCTOMAP_3D_MAPPING.md
-|   |-- M09_3D_ASTAR_PLANNING.md
-|   `-- M10_LOCALIZATION_TESTING.md
-|
-|-- images/
-|   |-- octomap/
-|   |-- m9_planning/
-|   `-- m10_testing/
-|
-`-- scripts/
-```
+    |
+    |-- ros2_ws/
+    |   `-- src/
+    |       |-- drone_offboard_control/
+    |       |   `-- drone_offboard_control/
+    |       |       |-- m13g_continuous_explorer.py
+    |       |       `-- local_path_monitor.py
+    |       |
+    |       |-- drone_3d_planner/
+    |       |   `-- src/
+    |       |       |-- astar_3d.cpp
+    |       |       |-- astar_3d_live.cpp
+    |       |       |-- frontier_detector_live.cpp
+    |       |       `-- octomap_query.cpp
+    |       |
+    |       `-- slam_quad_description/
+    |
+    |-- px4/
+    |   `-- slam_quad/
+    |
+    |-- point_lio/
+    |   |-- config/
+    |   |-- launch/
+    |   `-- patches/
+    |
+    |-- gazebo/
+    |   `-- worlds/
+    |
+    |-- octomap/
+    |   `-- maps/
+    |
+    |-- docs/
+    |   |-- M08_OCTOMAP_3D_MAPPING.md
+    |   |-- M09_3D_ASTAR_PLANNING.md
+    |   |-- M10_LOCALIZATION_TESTING.md
+    |   `-- M13_CONTINUOUS_AUTONOMOUS_EXPLORATION.md
+    |
+    |-- images/
+    |
+    |-- media/
+    |   `-- m13/
+    |       |-- full_exploration_1.gif
+    |       |-- full_exploration_2.gif
+    |       |-- map_growth.gif
+    |       |-- frontier_replanning.gif
+    |       `-- obstacle_avoidance.gif
+    |
+    |-- AUTHORS.md
+    `-- README.md
 
-The repository contains project-specific ROS 2 packages, simulation environments, configuration files, validation results, and documentation.
+The repository contains project-specific ROS 2 packages,
+simulation environments, configuration files, validation media,
+technical documentation, and custom autonomy implementations.
 
 ## Custom ROS 2 Nodes
 
-The `drone_offboard_control` package currently contains:
+The `drone_offboard_control` package contains:
 
-- `offboard_control` — basic autonomous PX4 Offboard mission
+- `offboard_control` — basic PX4 Offboard mission
 - `mapping_mission` — autonomous flight mission for mapping tests
-- `slam_to_px4` — converts SLAM odometry for PX4 external-vision fusion
-- `lidar_time_converter` — converts LiDAR timestamps for Point-LIO compatibility
-- `gps_denied_waypoint` — GPS-denied autonomous waypoint controller
+- `slam_to_px4` — Point-LIO to PX4 external-vision bridge
+- `lidar_time_converter` — LiDAR timestamp conversion for Point-LIO
+- `gps_denied_waypoint` — GPS-denied waypoint controller
+- `m13g_continuous_explorer` — continuous autonomous exploration supervisor
+- `local_path_monitor` — active-path LiDAR blockage monitor and replanning trigger
 
-The separate `drone_3d_planner` package contains:
+The `drone_3d_planner` package contains:
+- `astar_3d` — offline three-dimensional A* planner
+- `octomap_query` — OctoMap occupancy-query utility
+- `frontier_detector_live` — live frontier detection, clustering, safe-goal generation, and ranking
+- `astar_3d_live` — live OctoMap-based 3D A* planner with event-driven replanning
 
-- `astar_3d` — custom three-dimensional A* path planner
-- `octomap_query` — interactive OctoMap occupancy-query utility
+The current portfolio copies of both packages were independently
+build-tested with ROS 2 Jazzy and `colcon`.
 
 ## Project Milestones
 
@@ -273,12 +337,21 @@ The separate `drone_3d_planner` package contains:
 - **M5–M6** — Localization preparation and integration: complete
 - **M7** — GPS-denied localization and autonomous navigation: complete
 - **M8** — [3D occupancy mapping](docs/M08_OCTOMAP_3D_MAPPING.md): complete
-- **M9** — [3D A* path planning](docs/M09_3D_ASTAR_PLANNING.md): complete
-- **M10** — [Localization robustness testing and obstacle-avoidance development](docs/M10_LOCALIZATION_TESTING.md): in progress
-- **M11** — Autonomous waypoint integration with planned routes: planned
-- **M12** — Frontier exploration: planned
-- **M13** — Full autonomous exploration: planned
+- **M9** — [offline 3D A* path planning](docs/M09_3D_ASTAR_PLANNING.md): complete
+- **M10** — [localization robustness and obstacle-avoidance development](docs/M10_LOCALIZATION_TESTING.md): simulation validation completed; robustness tuning continues
+- **M11** — Autonomous execution of planned 3D paths: complete
+- **M12** — Live frontier-based exploration: complete
+- **M13** — [continuous autonomous 3D exploration](docs/M13_CONTINUOUS_AUTONOMOUS_EXPLORATION.md): demonstrated in simulation
 - **M14** — Optional semantic mapping: planned
+M13 sub-milestones currently include:
+
+- **M13A** — Live OctoMap: PASS
+- **M13B** — Live frontier detection: PASS
+- **M13C** — Clustering + safe frontier selection: PASS
+- **M13D** — Live 3D A* replanning: PASS
+- **M13E** — Autonomous execution of A* paths: PASS
+- **M13F** — Repeated frontier exploration: PASS
+- **M13G** — Continuous autonomous exploration: demonstrated
 
 ## Third-Party Components
 
@@ -297,16 +370,28 @@ Original third-party model assets retain their respective licenses and attributi
 
 ## Development Status
 
-**M0–M9 are complete. M10 is in progress.**
+The project has progressed from GPS-denied localization and
+mapping to **continuous autonomous 3D exploration in simulation**.
+The current demonstrated stack combines:
 
-The project currently demonstrates GPS-denied autonomous
-flight, LiDAR-inertial localization, 3D occupancy mapping,
-and validated offline 3D A* path planning.
-The current development stage focuses on localization
-robustness in larger environments and preparation for
-integrating the planner with autonomous flight and
-obstacle avoidance.
+- Point-LIO LiDAR-inertial localization
+- PX4 EKF2 external-vision fusion
+- live OctoMap generation
+- custom frontier detection and safe-goal selection
+- custom live 3D A* planning
+- continuous PX4 Offboard path execution
+- local LiDAR-based path monitoring
+- event-driven replanning
+- safe automatic landing when recovery fails
+The system has visibly demonstrated online map growth, path
+following, obstacle detection, replanning, avoidance / recovery,
+and continued autonomous exploration.
 
-See the individual milestone documents for technical
-details, implementation, testing procedures, and results.
+Current work focuses on robustness rather than adding a new
+high-level capability: smoother exploration, fewer unnecessary
+replans, and validation in increasingly challenging scenarios.
+
+The current exploration results are simulation demonstrations and
+should not be interpreted as production-ready dynamic obstacle
+avoidance or complete real-world validation.
 

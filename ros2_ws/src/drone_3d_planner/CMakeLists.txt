@@ -9,8 +9,10 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
 find_package(visualization_msgs REQUIRED)
 find_package(octomap REQUIRED)
+find_package(octomap_msgs REQUIRED)
 
 add_executable(octomap_query
   src/octomap_query.cpp
@@ -59,4 +61,58 @@ install(
   DESTINATION lib/${PROJECT_NAME}
 )
 
+
+# M13C live OctoMap frontier detector
+add_executable(frontier_detector_live
+  src/frontier_detector_live.cpp
+)
+ament_target_dependencies(
+  frontier_detector_live
+  rclcpp
+  geometry_msgs
+  nav_msgs
+  visualization_msgs
+  octomap_msgs
+)
+
+target_include_directories(
+  frontier_detector_live PRIVATE
+  ${OCTOMAP_INCLUDE_DIRS}
+)
+
+target_link_libraries(
+  frontier_detector_live
+  ${OCTOMAP_LIBRARIES}
+)
+
+# M13D live 3D A* planner
+add_executable(astar_3d_live
+  src/astar_3d_live.cpp
+)
+ament_target_dependencies(
+  astar_3d_live
+  rclcpp
+  geometry_msgs
+  nav_msgs
+  std_msgs
+  visualization_msgs
+  octomap_msgs
+)
+
+target_include_directories(
+  astar_3d_live PRIVATE
+  ${OCTOMAP_INCLUDE_DIRS}
+)
+
+target_link_libraries(
+  astar_3d_live
+  ${OCTOMAP_LIBRARIES}
+)
+
+install(
+  TARGETS
+    frontier_detector_live
+    astar_3d_live
+  DESTINATION lib/${PROJECT_NAME}
+)
 ament_package()

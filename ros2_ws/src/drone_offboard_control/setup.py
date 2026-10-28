@@ -29,6 +29,8 @@ setup(
             'slam_to_px4 = drone_offboard_control.slam_to_px4:main',
             'lidar_time_converter = drone_offboard_control.lidar_time_converter:main',
             'gps_denied_waypoint = drone_offboard_control.gps_denied_waypoint:main',
+            'm13g_continuous_explorer = drone_offboard_control.m13g_continuous_explorer:main',
+            'local_path_monitor = drone_offboard_control.local_path_monitor:main',
         ],
     },
 )
