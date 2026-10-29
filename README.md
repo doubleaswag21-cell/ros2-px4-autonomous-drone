@@ -251,60 +251,48 @@ PX4 Z = -ROS Z
 
 ## Repository Structure
 
+```text
 ros2-px4-autonomous-drone/
-    |
-    |-- ros2_ws/
-    |   `-- src/
-    |       |-- drone_offboard_control/
-    |       |   `-- drone_offboard_control/
-    |       |       |-- m13g_continuous_explorer.py
-    |       |       `-- local_path_monitor.py
-    |       |
-    |       |-- drone_3d_planner/
-    |       |   `-- src/
-    |       |       |-- astar_3d.cpp
-    |       |       |-- astar_3d_live.cpp
-    |       |       |-- frontier_detector_live.cpp
-    |       |       `-- octomap_query.cpp
-    |       |
-    |       `-- slam_quad_description/
-    |
-    |-- px4/
-    |   `-- slam_quad/
-    |
-    |-- point_lio/
-    |   |-- config/
-    |   |-- launch/
-    |   `-- patches/
-    |
-    |-- gazebo/
-    |   `-- worlds/
-    |
-    |-- octomap/
-    |   `-- maps/
-    |
-    |-- docs/
-    |   |-- M08_OCTOMAP_3D_MAPPING.md
-    |   |-- M09_3D_ASTAR_PLANNING.md
-    |   |-- M10_LOCALIZATION_TESTING.md
-    |   `-- M13_CONTINUOUS_AUTONOMOUS_EXPLORATION.md
-    |
-    |-- images/
-    |
-    |-- media/
-    |   `-- m13/
-    |       |-- full_exploration_1.gif
-    |       |-- full_exploration_2.gif
-    |       |-- map_growth.gif
-    |       |-- frontier_replanning.gif
-    |       `-- obstacle_avoidance.gif
-    |
-    |-- AUTHORS.md
-    `-- README.md
+              ↓
+           ros2_ws/
+              ↓
+             src/
+              ↓
+   +----------------------+----------------------+----------------------+
+   ↓                      ↓                      ↓
+drone_3d_planner/   drone_offboard_control/   slam_quad_description/
+   ↓                      ↓
+  src/              drone_offboard_control/
+   ↓                      ↓
+astar_3d.cpp        m13g_continuous_explorer.py
+astar_3d_live.cpp   local_path_monitor.py
+frontier_detector_live.cpp
+octomap_query.cpp
 
-The repository contains project-specific ROS 2 packages,
-simulation environments, configuration files, validation media,
-technical documentation, and custom autonomy implementations.
+Additional Project Resources
+              ↓
+   +----------+----------+----------+----------+----------+
+   ↓          ↓          ↓          ↓          ↓
+  px4/    point_lio/   gazebo/   octomap/    docs/
+   ↓          ↓          ↓          ↓          ↓
+slam_quad/  config/    worlds/     maps/     M08...
+            launch/                         M09...
+            patches/                        M10...
+                                            M13_CONTINUOUS_
+                                            AUTONOMOUS_EXPLORATION.md
+
+Demonstration Media
+              ↓
+          media/m13/
+              ↓
+   +----------+----------+----------+----------+----------+
+   ↓          ↓          ↓          ↓          ↓
+full_       full_      frontier_   map_      obstacle_
+exploration exploration replanning growth    avoidance
+_1.gif      _2.gif      .gif        .gif      .gif
+```
+
+The repository contains project-specific ROS 2 packages, simulation environments, configuration files, validation media, technical documentation, and custom autonomy implementations.
 
 ## Custom ROS 2 Nodes
 
